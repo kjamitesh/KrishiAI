@@ -26,3 +26,7 @@ lxml==5.2.1                  # HTML parser backend
 docx2txt==0.8                # Docx2txtLoader
 python-pptx==0.6.23          # PPTX parsing dependency
 unstructured>=0.14.0         # UnstructuredPowerPointLoader
+
+# Excel reader for .xlsx (required by pandas.read_excel)
+openpyxl==3.1.5
+
