@@ -1,72 +1,28 @@
-# --- Core app ---
+# requirements.txt — specific to the OpenAI-first Streamlit + LangChain + FAISS RAG code you’re running
+
+# --- Core UI ---
 streamlit==1.37.1
-rich==13.9.4  # streamlit 1.37 requires rich<14
-
-# --- LangChain stack (aligned pins) ---
-langchain==0.2.15
-langchain-core==0.2.37        # must be >=0.2.37 for langchain-community 0.2.15
-langchain-community==0.2.15
-langchain-anthropic==0.1.23
-anthropic==0.39.0
-httpx==0.27.2                 # Anthropic uses httpx; keep a stable version
-
-# --- Vector DB ---
-chromadb==0.5.5
-hnswlib==0.8.0
-
-# --- Embeddings / NLP ---
-sentence-transformers==2.7.0
-transformers==4.44.2
-torch==2.3.1                  # CPU wheel; stable on Linux/py3.12
-numpy<2.0                     # avoids native wheels compiled vs NumPy 1.x ABIs
-
-# --- Loaders / parsing ---
-pypdf==4.2.0
-docx2txt==0.8
-beautifulsoup4==4.12.3
-lxml==5.2.1
+rich==13.9.4                 # streamlit 1.37 requires rich<14
 pandas==2.2.2
+pillow==10.4.0
 
-# --- QoL ---
-python-dotenv==1.0.1
+# --- LangChain + OpenAI (required for: from langchain_openai import ChatOpenAI, OpenAIEmbeddings) ---
+langchain==0.2.15
+langchain-core==0.2.37
+langchain-community==0.2.15
+langchain-text-splitters==0.2.2
+langchain-openai==0.1.23
+openai>=1.40.0,<2.0
 
-
-faiss-cpu
-
-
-# ---------- Core UI ----------
-streamlit>=1.34
-pyyaml>=6.0.1
-
-# ---------- Optional: file parsing / uploads (safe to keep) ----------
-pandas>=2.2
-openpyxl>=3.1
-pypdf>=4.2
-python-docx>=1.1
-python-pptx>=0.6.23
-
-# ---------- LLM (Claude) ----------
-# Uses environment variable ANTHROPIC_API_KEY
-anthropic>=0.20,<1.0
-
-# ---------- Vector DB (Milvus) ----------
-pymilvus>=2.4,<3.0
-
-# ---------- Retrieval / embeddings (RAG plumbing) ----------
-sentence-transformers>=2.6,<3.0
+# --- Vector store used in code (FAISS) ---
 faiss-cpu>=1.8.0.post1; platform_system != "Windows"
-# If on Windows, prefer this fork or build FAISS separately:
+# If deploying on Windows, uncomment:
 # faiss-cpu-windows>=1.8.0.post1; platform_system == "Windows"
 
-# ---------- Optional: LangChain scaffolding (if you plan to use it) ----------
-langchain-core>=0.2,<0.3
-langchain-community>=0.2,<0.3
-langchain-text-splitters>=0.2,<0.3
-
-# ---------- Misc (quality of life) ----------
-python-dotenv>=1.0
-requests>=2.32
-
-
-
-
+# --- Document loaders used in code ---
+pypdf==4.2.0                 # PyPDFLoader
+beautifulsoup4==4.12.3       # BSHTMLLoader
+lxml==5.2.1                  # HTML parser backend
+docx2txt==0.8                # Docx2txtLoader
+python-pptx==0.6.23          # PPTX parsing dependency
+unstructured>=0.14.0         # UnstructuredPowerPointLoader
