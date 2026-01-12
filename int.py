@@ -1,4 +1,3 @@
-I’ll remove the sidebar rendering function and all sidebar-related calls while keeping the same defaults, hidden-sidebar CSS, and all app behavior (indexing, chat UI, commands, greeting rule).
 # Author: Amitesh Jha 
 # Streamlit + LangChain RAG app — OpenAI-first (LLM + embeddings), CPU-safe indexing.
 #
